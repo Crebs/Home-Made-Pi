@@ -15,21 +15,21 @@ class PiLEDRunner
   def light_up_the_pi()
     i = 0
     while i < 60 do
-      self.pin.on
+      @pin.on
       sleep sleep_time
-      self.pin.off
+      @pin.off
       sleep sleep_time
-      self.pin2.on
+      @pin2.on
       sleep sleep_time
-      self.pin2.off
+      @pin2.off
       sleep sleep_time
-      self.pin3.on
+      @pin3.on
       sleep sleep_time
-      self.pin3.off
+      @pin3.off
       sleep sleep_time
-      self.pin4.on
+      @pin4.on
       sleep sleep_time
-      self.pin4.off
+      @pin4.off
       sleep sleep_time
       i+=1
     end
