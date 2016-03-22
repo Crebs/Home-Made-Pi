@@ -9,7 +9,7 @@ email_count = 0
 piLED = PiLEDRunner.new()
 Gmail.new('rileycrebs', 'B.68GH51+%g5127') do |gmail|
   while 1
-    current_email_count = gmail.mailbox('Inbox').count(:unread)
+    current_email_count = gmail.mailbox('Inbox').count
     puts "number of unread email #{current_email_count}"
     if email_count != current_email_count
       puts 'light up leds.'
