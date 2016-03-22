@@ -2,12 +2,12 @@ require 'pi_piper'
 include PiPiper
 
 class PiLEDRunner
+  pin = PiPiper::Pin.new(:pin => 22, :direction => :out)
+  pin2 = PiPiper::Pin.new(:pin => 27, :direction => :out)
+  pin3 = PiPiper::Pin.new(:pin => 17, :direction => :out)
+  pin4 = PiPiper::Pin.new(:pin => 24, :direction => :out)
+  sleep_time = 0.0250
   def light_up_the_pi()
-    sleep_time = 0.0250
-    pin = PiPiper::Pin.new(:pin => 22, :direction => :out)
-    pin2 = PiPiper::Pin.new(:pin => 27, :direction => :out)
-    pin3 = PiPiper::Pin.new(:pin => 17, :direction => :out)
-    pin4 = PiPiper::Pin.new(:pin => 24, :direction => :out)
     i = 0
     while i < 60 do
       pin.on
