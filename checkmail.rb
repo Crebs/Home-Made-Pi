@@ -7,8 +7,8 @@ require './light_it_up'
 email_count = 0
 
 piLED = PiLEDRunner.new()
-Gmail.new('rileycrebs', 'B.68GH51+%g5127') do |gmail|
-  while 1
+while 1
+  Gmail.new('rileycrebs', 'B.68GH51+%g5127') do |gmail|
     current_email_count = gmail.mailbox('Inbox').count
     puts "number of unread email #{current_email_count}"
     if email_count != current_email_count
@@ -16,6 +16,6 @@ Gmail.new('rileycrebs', 'B.68GH51+%g5127') do |gmail|
       piLED.light_up_the_pi()
       email_count = current_email_count
     end
-    sleep 5
   end
+  sleep 5
 end
