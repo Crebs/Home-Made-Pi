@@ -4,10 +4,8 @@ include PiPiper
 class PiLEDRunner
   
   def initialize
-    @pin = PiPiper::Pin.new(:pin => 22, :direction => :out)
-    @pin2 = PiPiper::Pin.new(:pin => 27, :direction => :out)
-    @pin3 = PiPiper::Pin.new(:pin => 17, :direction => :out)
-    @pin4 = PiPiper::Pin.new(:pin => 24, :direction => :out)
+    @pin = PiPiper::Pin.new(:pin => 18, :direction => :out)
+    @pin2 = PiPiper::Pin.new(:pin => 23, :direction => :out)
     @sleep_time = 0.0250
   end
   
@@ -17,8 +15,6 @@ class PiLEDRunner
     while i < 60 do
       self.light_up_pin(@pin)
       self.light_up_pin(@pin2)
-      self.light_up_pin(@pin3)
-      self.light_up_pin(@pin4)
       sleep @sleep_time
       i+=1
     end
@@ -26,10 +22,19 @@ class PiLEDRunner
   
   def light_up_pin(pin)
     pin.on
-    sleep @sleep_time
+  end
+
+  def turn_off_led(pin)
     pin.off
   end
+
+  def turn_on_red_led()
+    self.light_up_pin(@pin)
+    self.turn_off_led(@pin2)
+  end
+
+  def turn_on_green_led()
+    self.light_up_pin(@pin2)
+    self.turn_off_led(@pin)
+  end
 end
-
-
-
