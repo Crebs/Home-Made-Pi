@@ -50,10 +50,3 @@ class PiTempReader
    end
 
 end
-
-piTemp = PiTempReader.new()
-while 1
-   puts "Enter Temp (F°): "
-   temp = gets.chomp 
-   piTemp.automate_tempurature(temp)
-end
