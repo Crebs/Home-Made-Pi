@@ -4,13 +4,9 @@ hostname = '10.0.1.71'
 port = 2000
 
 s = TCPSocket.open(hostname, port)
-
-while line = s.gets   # Read lines from the socket
-  puts line.chop      # And print with platform line terminator
-end
-temp = gets.chomp
+puts s.gets.chop      # And print with platform line terminator
+temp = gets.chop
 s.puts temp
-while line = s.gets   # Read lines from the socket
-  puts line.chop      # And print with platform line terminator
-end
+puts s.gets.chop
+puts s.gets.chomp
 s.close               # Close the socket when done
