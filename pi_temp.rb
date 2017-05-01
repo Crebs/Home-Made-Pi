@@ -13,7 +13,6 @@ class PiTempReader
    def read_temp_raw()
       base_dir = File.expand_path('/sys/bus/w1/devices/')
       files = Dir[File.join(base_dir, '28*')]
-      #p files.map {|f| f.sub!(base_dir,"")}
       device_folder = files[0]
       device_file = device_folder + '/w1_slave'
       contents = File.readlines(device_file)
@@ -40,13 +39,13 @@ class PiTempReader
       temp = read_temp_raw()[1]
       if temp < @last_temp
 	 sleep_time = 15 * 60
-	 print "Shutting off for " + sleep_time + " because temperature isn't rising: current temp - " + temp + " last temp " + @last_temp
+	 print "Shutting off for " + sleep_time.to_s + " because temperature isn't rising: current temp - " + temp.to_s + " last temp " + @last_temp.to_s
 	 @piLED.turn_on_red_led()
          sleep sleep_time
          @last_temp = 0
       end
       if temp > input.to_f
-	 print "Shutting off, current temperature is " + temp + " set temperature is " + input.to_f
+	 print "Shutting off, current temperature is " + temp.to_s + " set temperature is " + input
          @piLED.turn_on_red_led()
          @last_temp = 0
       else
