@@ -9,6 +9,7 @@ class PiTempReader
       sence_temp_change()
       @last_temp = 0
    end
+
    def read_temp_raw()
       base_dir = File.expand_path('/sys/bus/w1/devices/')
       files = Dir[File.join(base_dir, '28*')]
@@ -23,6 +24,7 @@ class PiTempReader
       print("Current temp is: " + temp_c.to_s + "°C ", temp_f.to_s + "°F Currently set to : " +  @set_temp.to_s + "°F\n")
       return temp_c, temp_f
    end
+
    def sence_temp_change()
       listen = Thread.new {
 	while 1
@@ -32,15 +34,19 @@ class PiTempReader
       }.run
    end 
 
+   # 
    def automate_tempurature(input)
       @set_temp = input
       temp = read_temp_raw()[1]
       if temp < @last_temp
+	 sleep_time = 15 * 60
+	 print "Shutting off for " + sleep_time + " because temperature isn't rising: current temp - " + temp + " last temp " + @last_temp
 	 @piLED.turn_on_red_led()
-         sleep 15*60
+         sleep sleep_time
          @last_temp = 0
       end
       if temp > input.to_f
+	 print "Shutting off, current temperature is " + temp + " set temperature is " + input.to_f
          @piLED.turn_on_red_led()
          @last_temp = 0
       else
