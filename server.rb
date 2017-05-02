@@ -10,7 +10,7 @@ loop {                          # Servers run forever
     temp = client.gets.chop
     puts 'Temp set to ' + temp + ' F°'
     client.puts 'Tempurature set to ' + temp + ' F°'
-    piTemp.automate_tempurature(temp)
+    piTemp.automate_tempurature(temp.to_f)
     client.puts "Closing the connection. Bye!"
     client.close                # Disconnect from the client
   end

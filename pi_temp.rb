@@ -44,8 +44,8 @@ class PiTempReader
          sleep sleep_time
          @last_temp = 0
       end
-      if temp > input.to_f
-	 print "Shutting off, current temperature is " + temp.to_s + " set temperature is " + input
+      if temp > @set_temp
+	 print "Shutting off, current temperature is " + temp.to_s + " set temperature is " + @set_temp.to_s
          @piLED.turn_on_red_led()
          @last_temp = 0
       else
